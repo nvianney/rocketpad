@@ -62,6 +62,10 @@ public class RocketController : MonoBehaviour
         if (transform.position.y <= 70) {
             animator.SetBool("isLanding", true);
         }
+        if (transform.position.y <= -70) {
+            OnExplode.Invoke();
+            gameObject.SetActive(false);
+        }
     }
      
     void FixedUpdate()
@@ -185,6 +189,8 @@ public class RocketController : MonoBehaviour
         Vector3 angle = transform.rotation.eulerAngles;
         Vector3 point = collision.GetContact(0).point;
 
+        if (angle.x > 180) angle.x -= 360;
+
         Debug.Log("Force: " + force);
         Debug.Log("Angle: " + angle);
         Debug.Log("Point: " + point);
@@ -205,7 +211,7 @@ public class RocketController : MonoBehaviour
             pieces.SetActive(true);
             for (int i = 0; i < pieces.transform.childCount; i++) {
                 GameObject p = pieces.transform.GetChild(i).gameObject;
-                Vector3 direction = p.transform.position - point;
+                Vector3 direction = (p.transform.position - point).normalized;
 
                 // Newton's law of gravitation
                 // 1/(rm^-1)^2

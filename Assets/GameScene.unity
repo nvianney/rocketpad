@@ -9944,6 +9944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a0724f87208eb44badf7691b9ecdee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 1
   restartTime: 5
   text: {fileID: 1532033100}
 --- !u!4 &295154598
@@ -10393,8 +10394,30 @@ MonoBehaviour:
     minimum: 0
     maximum: 400
   brokenPieces: {fileID: 2138852255}
-  explosionImpulse: 300
+  landingRangeX:
+    minimum: -20
+    maximum: 20
+  maxLandingForce: 55000
+  maxLandingAngle: 15
+  explosionImpulse: 25
+  radialImpulse: 20
+  randomImpulse: 10
   explosionRadiusMultiplier: 1.5
+  OnSuccess:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 295154597}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnRocketSuccess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnExplode:
     m_PersistentCalls:
       m_Calls:
@@ -20517,7 +20540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -200}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1532033102
