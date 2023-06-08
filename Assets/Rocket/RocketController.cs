@@ -189,6 +189,13 @@ public class RocketController : MonoBehaviour
         Vector3 angle = transform.rotation.eulerAngles;
         Vector3 point = collision.GetContact(0).point;
 
+        // bottom plate: use position of bottom of rocket.
+        GameObject bbase = transform.Find("Base").gameObject;
+        if (GameObject.ReferenceEquals(collision.GetContact(0).thisCollider.gameObject, bbase)) {
+            print("Base");
+            point = bbase.transform.position;
+        }
+
         if (angle.x > 180) angle.x -= 360;
 
         Debug.Log("Force: " + force);
