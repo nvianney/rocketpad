@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.LowLevel;
 public class RocketController : MonoBehaviour
 {
 
+    public MinMaxRange spawnDistanceX;
     public float thrustForce;
     public float tiltForce;
     public GameObject tiltPosition;
@@ -54,6 +55,12 @@ public class RocketController : MonoBehaviour
         rightThrustParticle = new ParticleWrapper(rightThrustParticleObject.GetComponent<ParticleSystem>());
 
         Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
+
+        transform.position = new Vector3(
+            Mathf.Sign(Random.Range(-1.0f, 1.0f)) * Random.Range(spawnDistanceX.minimum, spawnDistanceX.maximum),
+            transform.position.y,
+            transform.position.z);
+        transform.Rotate(new Vector3(Mathf.Sign(Random.Range(-1.0f, 1.0f)) * Random.Range(10.0f, 35.0f), 0, 0));
     }
 
     // Update is called once per frame
@@ -192,7 +199,6 @@ public class RocketController : MonoBehaviour
         // bottom plate: use position of bottom of rocket.
         GameObject bbase = transform.Find("Base").gameObject;
         if (GameObject.ReferenceEquals(collision.GetContact(0).thisCollider.gameObject, bbase)) {
-            print("Base");
             point = bbase.transform.position;
         }
 
