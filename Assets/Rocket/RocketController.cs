@@ -211,11 +211,11 @@ public class RocketController : MonoBehaviour
             pieces.SetActive(true);
             for (int i = 0; i < pieces.transform.childCount; i++) {
                 GameObject p = pieces.transform.GetChild(i).gameObject;
-                Vector3 direction = (p.transform.position - point).normalized;
+                Vector3 direction = (p.transform.position - point);
 
                 // Newton's law of gravitation
                 // 1/(rm^-1)^2
-                Vector3 impulse = (direction / direction.sqrMagnitude) * explosionRadiusMultiplier * explosionRadiusMultiplier * explosionImpulse;
+                Vector3 impulse = (direction.normalized / direction.sqrMagnitude) * explosionRadiusMultiplier * explosionRadiusMultiplier * explosionImpulse;
 
                 // Also explode away from center
                 Vector3 impulse2 = new Vector3(

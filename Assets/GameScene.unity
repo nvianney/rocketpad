@@ -10399,10 +10399,10 @@ MonoBehaviour:
     maximum: 20
   maxLandingForce: 55000
   maxLandingAngle: 15
-  explosionImpulse: 25
-  radialImpulse: 20
-  randomImpulse: 10
-  explosionRadiusMultiplier: 1.5
+  explosionImpulse: 400
+  radialImpulse: 15
+  randomImpulse: 20
+  explosionRadiusMultiplier: 3
   OnSuccess:
     m_PersistentCalls:
       m_Calls:
